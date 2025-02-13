@@ -28,15 +28,15 @@ function makeGrid(gridSize)
             container.appendChild(newDiv);
         }
     
-    visited = document.querySelectorAll('.grid-box');
-
-    visited.forEach((box)=>{
-        box.addEventListener("mouseover",(event) => {
-            let r = Math.floor(Math.random()*256);
-            let g = Math.floor(Math.random()*256);
-            let b = Math.floor(Math.random()*256);
-            event.target.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b +')' ;
-        });
+    // Since we have many divs inside the container, it would be more efficient to make the eventListener attached to the container, event bubblind will ensure that event reaches the container as well.
+    
+    container.addEventListener("mouseover", (event) => {
+        if (event.target.classList.contains("grid-box")) {
+            let r = Math.floor(Math.random() * 256);
+            let g = Math.floor(Math.random() * 256);
+            let b = Math.floor(Math.random() * 256);
+            event.target.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+        }
     });
 }
 
