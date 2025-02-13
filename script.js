@@ -15,6 +15,13 @@ button.addEventListener('click',()=>{
     makeGrid(userInput);
 });
 
+function generateRandomColor() {
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 256);
+    let b = Math.floor(Math.random() * 256);
+    return `rgb(${r}, ${g}, ${b})`;
+}
+
 function makeGrid(gridSize)
 {
     for(let i = 0;i < gridSize*gridSize;i++)
@@ -32,10 +39,7 @@ function makeGrid(gridSize)
     
     container.addEventListener("mouseover", (event) => {
         if (event.target.classList.contains("grid-box")) {
-            let r = Math.floor(Math.random() * 256);
-            let g = Math.floor(Math.random() * 256);
-            let b = Math.floor(Math.random() * 256);
-            event.target.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+            event.target.style.backgroundColor = generateRandomColor();
         }
     });
 }
